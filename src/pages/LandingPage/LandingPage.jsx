@@ -78,6 +78,8 @@ export default function LandingPage() {
       description: "A skill-based learning platform for coding, design, and digital education",
       features: ["Interactive Coding Courses", "Design Workshops", "Live Mentorship", "Project-Based Learning"],
       color: "from-blue-500 to-cyan-500",
+       link: "https://s8academy.s8globals.org/", // 🔗 your desired link
+
     },
     {
       icon: <Puzzle className="w-8 h-8" />,
@@ -85,6 +87,7 @@ export default function LandingPage() {
       description: "A flexible, no-code/low-code website & landing page builder with booking services",
       features: ["Drag & Drop Builder", "Professional Templates", "Booking Integration", "Mobile Responsive"],
       color: "from-purple-500 to-pink-500",
+         link: "https://s8builder.s8globals.org/",
     },
     {
       icon: <Brain className="w-8 h-8" />,
@@ -92,6 +95,7 @@ export default function LandingPage() {
       description: "An AI-powered assistant for research, learning, and productivity",
       features: ["Smart Research", "Content Generation", "Learning Assistant", "Productivity Tools"],
       color: "from-green-500 to-emerald-500",
+          link: "https://lexiai.s8globals.com",
     },
   ]
 
@@ -110,20 +114,20 @@ export default function LandingPage() {
     { icon: <TrendingUp className="w-8 h-8" />, number: "98%", label: "Success Rate" },
     { icon: <Clock className="w-8 h-8" />, number: "24/7", label: "Support" },
   ]
-const handleInputChange = (e) => {
-  setFormData((prev) => ({
-    ...prev,
-    [e.target.name]: e.target.value,
-  }))
-}
+  const handleInputChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
 
-const handleSubmit = (e) => {
-  e.preventDefault()
-  console.log("Form submitted:", formData)
-  // Handle form submission here
-}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("Form submitted:", formData)
+    // Handle form submission here
+  }
 
-const isAnimated = (sectionId) => visibleSections.has(sectionId)
+  const isAnimated = (sectionId) => visibleSections.has(sectionId)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden">
@@ -249,9 +253,8 @@ const isAnimated = (sectionId) => visibleSections.has(sectionId)
             {products.map((product, index) => (
               <Card
                 key={index}
-                className={`bg-slate-800/50 border-slate-700 hover:border-slate-600 transition-all duration-700 hover:scale-105 hover:shadow-2xl cursor-pointer group transform ${
-                  isAnimated("products") ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
-                } ${activeProduct === index ? "ring-2 ring-cyan-500" : ""}`}
+                className={`bg-slate-800/50 border-slate-700 hover:border-slate-600 transition-all duration-700 hover:scale-105 hover:shadow-2xl cursor-pointer group transform ${isAnimated("products") ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
+                  } ${activeProduct === index ? "ring-2 ring-cyan-500" : ""}`}
                 style={{ transitionDelay: `${index * 200}ms` }}
                 onMouseEnter={() => setActiveProduct(index)}
               >
@@ -275,9 +278,15 @@ const isAnimated = (sectionId) => visibleSections.has(sectionId)
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full mt-6 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 transform hover:scale-105 transition-all duration-300">
-                    Learn More
-                  </Button>
+                  <a
+                    href={product.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="w-full mt-6 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 transform hover:scale-105 transition-all duration-300">
+                      Learn More
+                    </Button>
+                  </a>
                 </CardContent>
               </Card>
             ))}
@@ -376,9 +385,8 @@ const isAnimated = (sectionId) => visibleSections.has(sectionId)
               {techStack.map((tech, index) => (
                 <Badge
                   key={index}
-                  className={`px-4 py-2 text-sm bg-slate-800 text-slate-300 border-slate-600 hover:border-cyan-500 hover:text-cyan-300 transition-all duration-500 cursor-pointer transform hover:scale-110 delay-${index * 100} ${
-                    isAnimated("tech") ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                  }`}
+                  className={`px-4 py-2 text-sm bg-slate-800 text-slate-300 border-slate-600 hover:border-cyan-500 hover:text-cyan-300 transition-all duration-500 cursor-pointer transform hover:scale-110 delay-${index * 100} ${isAnimated("tech") ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                    }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   {tech}
