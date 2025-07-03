@@ -95,7 +95,7 @@ export default function LandingPage() {
       description: "An AI-powered assistant for research, learning, and productivity",
       features: ["Smart Research", "Content Generation", "Learning Assistant", "Productivity Tools"],
       color: "from-green-500 to-emerald-500",
-          link: "https://lexiai.s8globals.com",
+          link: "https://lexiai.s8globals.org/",
     },
   ]
 
