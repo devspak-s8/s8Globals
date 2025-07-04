@@ -1,6 +1,7 @@
 "use client"
 import React from "react"
 
+import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
@@ -160,9 +161,10 @@ export default function LandingPage() {
               Contact
             </a>
           </div>
+          <Link to="/waitlist">
           <Button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 transform hover:scale-105 transition-all duration-300">
-            Get Started
-          </Button>
+            Join the Waitlist
+          </Button></Link>
         </div>
       </nav>
 
