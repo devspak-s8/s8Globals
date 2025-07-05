@@ -174,7 +174,7 @@ const handleInputChange = (field, value) => {
             </div>
             <div className="space-y-2">
               <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                Join 8Globals
+                Join s8Globals
               </CardTitle>
               <CardDescription className="text-gray-600 text-lg">
                 Be the first to access our innovation ecosystem
