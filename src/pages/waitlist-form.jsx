@@ -8,22 +8,48 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CheckCircle, Sparkles, Users, Code2, ArrowLeft } from "lucide-react"
-
+import emailjs from "emailjs-com";
 export default function Waitlist() {
 const [currentView, setCurrentView] = useState("landing");
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({ name: "", email: "" })
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsLoading(true);
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
 
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+    const serviceID = "service_ts1yckf";       // EmailJS Gmail SMTP service ID
+    const adminTemplateID = "template_2wpwm7h"; // built-in admin notify template
+    const userTemplateID = "template_5wy0n0q";          // built-in auto-reply template
+    const publicKey = "pclh8W5lnXUuwY2UJ";        // EmailJS public key
 
-  setIsLoading(false);
-  setCurrentView("success");
+    const adminParams = {
+      to_name: "Sulayman (Admin)",              // Your name or brand
+      to_email: "info@s8globals.org",          // Your email for admin notification
+      order_number: "WAITLIST",
+      order_date: new Date().toLocaleString(),
+      customer_email: formData.email,
+    };
+
+  const userParams = {
+  user_name: formData.name,  // note: user_name not to_name
+  email: formData.email,     // must match {{email}} in template
 };
+
+
+    try {
+      // Notify admin
+      await emailjs.send(serviceID, adminTemplateID, adminParams, publicKey);
+      // Auto-reply user
+      await emailjs.send(serviceID, userTemplateID, userParams, publicKey);
+
+      setCurrentView("success");
+    } catch (error) {  console.error("Email send failed:", error.text || error);
+      alert("Submission failed, try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
 const handleInputChange = (field, value) => {
   setFormData((prev) => ({
