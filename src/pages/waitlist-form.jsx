@@ -1,41 +1,64 @@
-"use client"
+"use client";
 
-import  React from "react"
+import React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { CheckCircle, Sparkles, Users, Code2, ArrowLeft } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { CheckCircle, Sparkles, Users, Code2, ArrowLeft } from "lucide-react";
 import emailjs from "emailjs-com";
 export default function Waitlist() {
-const [currentView, setCurrentView] = useState("landing");
-  const [isLoading, setIsLoading] = useState(false)
-  const [formData, setFormData] = useState({ name: "", email: "" })
+  const [currentView, setCurrentView] = useState("landing");
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const referralLink = "https://yourapp.com/?ref=REEFER123"; // Replace with dynamic ref if needed
+  const shareReferralLink = () => {
+    const message = `🚀 I just joined the S8Globals waitlist! Get early access by signing up with my link: ${referralLink}`;
 
- const handleSubmit = async (e) => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Join S8Globals 🚀",
+          text: message,
+          url: referralLink,
+        })
+        .then(() => console.log("Referral link shared successfully"))
+        .catch((err) => console.error("Error sharing:", err));
+    } else {
+      // fallback: copy to clipboard
+      navigator.clipboard.writeText(referralLink);
+      alert("Referral link copied! Share it with your friends 📎");
+    }
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const serviceID = "service_ts1yckf";       // EmailJS Gmail SMTP service ID
+    const serviceID = "service_ts1yckf"; // EmailJS Gmail SMTP service ID
     const adminTemplateID = "template_2wpwm7h"; // built-in admin notify template
-    const userTemplateID = "template_5wy0n0q";          // built-in auto-reply template
-    const publicKey = "pclh8W5lnXUuwY2UJ";        // EmailJS public key
+    const userTemplateID = "template_5wy0n0q"; // built-in auto-reply template
+    const publicKey = "pclh8W5lnXUuwY2UJ"; // EmailJS public key
 
     const adminParams = {
-      to_name: "Sulayman (Admin)",              // Your name or brand
-      to_email: "info@s8globals.org",          // Your email for admin notification
+      to_name: "Sulayman (Admin)", // Your name or brand
+      to_email: "info@s8globals.org", // Your email for admin notification
       order_number: "WAITLIST",
       order_date: new Date().toLocaleString(),
       customer_email: formData.email,
     };
 
-  const userParams = {
-  user_name: formData.name,  // note: user_name not to_name
-  email: formData.email,     // must match {{email}} in template
-};
-
+    const userParams = {
+      user_name: formData.name, // note: user_name not to_name
+      email: formData.email, // must match {{email}} in template
+    };
 
     try {
       // Notify admin
@@ -44,19 +67,20 @@ const [currentView, setCurrentView] = useState("landing");
       await emailjs.send(serviceID, userTemplateID, userParams, publicKey);
 
       setCurrentView("success");
-    } catch (error) {  console.error("Email send failed:", error.text || error);
+    } catch (error) {
+      console.error("Email send failed:", error.text || error);
       alert("Submission failed, try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
-const handleInputChange = (field, value) => {
-  setFormData((prev) => ({
-    ...prev,
-    [field]: value,
-  }));
-};
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   // Landing Page View
   if (currentView === "landing") {
@@ -87,11 +111,13 @@ const handleInputChange = (field, value) => {
           </div>
 
           <div className="space-y-4 animate-in slide-in-from-bottom-8 duration-800 delay-200">
-            <h2 className="text-4xl font-bold text-gray-900">Ready to Transform Your Ideas?</h2>
+            <h2 className="text-4xl font-bold text-gray-900">
+              Ready to Bring Your Ideas to Life?
+            </h2>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
-              Join the central innovation agency empowering students, freelancers, and startups across the globe. Access
-              our multi-product digital ecosystem built for education, productivity, AI, and development.
+              S8Globals is your launchpad — empowering students, freelancers, and founders with digital tools built for learning, creating, and scaling. Join a growing ecosystem of innovation across Africa and beyond.
             </p>
+
           </div>
 
           <div className="animate-in slide-in-from-bottom-8 duration-800 delay-400">
@@ -107,25 +133,34 @@ const handleInputChange = (field, value) => {
           {/* Feature highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto animate-in slide-in-from-bottom-8 duration-800 delay-600">
             <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-purple-100 hover:bg-white/90 hover:border-purple-200 transition-all duration-300 shadow-sm hover:shadow-md">
-              <h3 className="text-gray-900 font-semibold mb-2">For Students</h3>
+              <h3 className="text-gray-900 font-semibold mb-2">For Creators</h3>
               <p className="text-gray-600 text-sm">
-                Educational tools and resources to accelerate your learning journey
+                Access design assets, templates, and branding kits to build your
+                creative vision with S8Globals.
               </p>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-purple-100 hover:bg-white/90 hover:border-purple-200 transition-all duration-300 shadow-sm hover:shadow-md">
-              <h3 className="text-gray-900 font-semibold mb-2">For Freelancers</h3>
-              <p className="text-gray-600 text-sm">Productivity solutions and AI tools to enhance your workflow</p>
+              <h3 className="text-gray-900 font-semibold mb-2">
+                For Developers
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Get pre-built components, AI integrations, and dev tools to
+                accelerate your project timelines.
+              </p>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-purple-100 hover:bg-white/90 hover:border-purple-200 transition-all duration-300 shadow-sm hover:shadow-md">
-              <h3 className="text-gray-900 font-semibold mb-2">For Startups</h3>
+              <h3 className="text-gray-900 font-semibold mb-2">
+                For Legal Teams
+              </h3>
               <p className="text-gray-600 text-sm">
-                Development platforms and innovation frameworks to scale your business
+                Automate legal research, draft documents, and get real-time
+                legal insights with LexiAI — your AI-powered legal assistant.
               </p>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // Success View
@@ -139,22 +174,26 @@ const handleInputChange = (field, value) => {
                 <CheckCircle className="w-8 h-8 text-green-600" />
               </div>
               <div className="space-y-2 animate-in slide-in-from-bottom-4 duration-700 delay-300">
-                <h2 className="text-2xl font-bold text-gray-900">Welcome to s8Globals!</h2>
-                <p className="text-gray-600">
-                  Thanks for joining our innovation ecosystem. We'll notify you when we launch our next breakthrough
-                  product!
+                <h2 className="text-2xl font-bold text-gray-900">
+                  🎉 You're on the waitlist!
+                </h2>
+                <p className="text-gray-600 mt-2">
+                  Thanks for joining — you're officially on the list.
                 </p>
+              
+             
+                <p className="text-gray-600 mt-4">
+                👇 Share it with friends on WhatsApp, Twitter, IG — and let’s build together!
+                </p>
+
               </div>
               <div className="pt-4 space-y-3 animate-in slide-in-from-bottom-4 duration-700 delay-500">
                 <Button
-                  onClick={() => {
-                    setCurrentView("waitlist")
-                    setFormData({ name: "", email: "" })
-                  }}
+                  onClick={shareReferralLink}
                   variant="outline"
                   className="w-full transition-all duration-300 hover:scale-105"
                 >
-                  Join Another Person
+                   🔗 Share with Friends
                 </Button>
                 <Button
                   onClick={() => setCurrentView("landing")}
@@ -169,7 +208,7 @@ const handleInputChange = (field, value) => {
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 
   // Waitlist Form View
@@ -208,7 +247,7 @@ const handleInputChange = (field, value) => {
             </div>
             <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
               <Users className="w-4 h-4" />
-              <span>3,247 innovators already joined</span>
+              <span>10+ innovators already joined</span>
             </div>
           </CardHeader>
 
@@ -216,7 +255,10 @@ const handleInputChange = (field, value) => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-sm font-medium text-gray-700 transition-colors duration-200">
+                  <Label
+                    htmlFor="name"
+                    className="text-sm font-medium text-gray-700 transition-colors duration-200"
+                  >
                     Full Name
                   </Label>
                   <Input
@@ -231,7 +273,10 @@ const handleInputChange = (field, value) => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-medium text-gray-700 transition-colors duration-200">
+                  <Label
+                    htmlFor="email"
+                    className="text-sm font-medium text-gray-700 transition-colors duration-200"
+                  >
                     Email Address
                   </Label>
                   <Input
@@ -267,7 +312,8 @@ const handleInputChange = (field, value) => {
 
             <div className="text-center">
               <p className="text-xs text-gray-500">
-                By joining, you agree to receive updates about our products and launches.
+                By joining, you agree to receive updates about our products and
+                launches.
                 <br />
                 <span className="text-purple-600 hover:text-purple-700 cursor-pointer transition-colors duration-200">
                   Unsubscribe anytime.
@@ -287,5 +333,5 @@ const handleInputChange = (field, value) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
