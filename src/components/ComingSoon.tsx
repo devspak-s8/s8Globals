@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Brain, DollarSign, Users, Calendar, Bell, BarChart3 } from 'lucide-react';
+import { Brain, DollarSign, Calendar, Bell, BarChart3 } from 'lucide-react';
 
 interface ComingSoonProps {
   isDarkMode: boolean;
