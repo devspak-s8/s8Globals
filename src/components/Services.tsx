@@ -76,7 +76,7 @@ const Services: React.FC<ServicesProps> = ({ isDarkMode }) => {
   return (
     <section id="services" className={`py-20 ${
       isDarkMode ? 'bg-gray-800' : 'bg-white'
-    } px-20`}>
+    } `}>
       <div className="container mx-auto px-4">
         <div ref={servicesRef} className="opacity-0">
           {/* Section Header */}

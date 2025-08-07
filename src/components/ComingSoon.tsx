@@ -45,25 +45,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ isDarkMode }) => {
       bgColor: 'bg-primary-orange',
       statusColor: 'bg-primary-orange',
     },
-    {
-      icon: Users,
-      title: 'S8Community',
-      description: 'Developer community platform with collaboration tools',
-      timeline: 'Mid 2026',
-      status: 'Concept',
-      color: 'text-primary-purple',
-      bgColor: 'bg-primary-purple',
-      statusColor: 'bg-primary-purple',
-    }, {
-      icon: Users,
-      title: 'S8Portfolios',
-      description: 'Professional portfolio builder for developers and designers',
-      timeline: 'Mid 2026',
-      status: 'Concept',
-      color: 'text-primary-purple',
-      bgColor: 'bg-primary-purple',
-      statusColor: 'bg-primary-purple',
-    }, {
+   {
       icon: BarChart3,
       title: 'S8Analytics',
       description: 'Privacy-first analytics for modern web applications',

@@ -100,7 +100,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isDarkMode }) => {
   return (
     <section id="why-choose-us" className={`py-20 ${
       isDarkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-bg-light to-white'
-    } px-24`}>
+    }`}>
       <div className="container mx-auto px-4">
         <div ref={whyRef} className="opacity-0">
           {/* Section Header */}
