@@ -29,11 +29,11 @@ function App() {
       isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
     }`}>
       {/* Theme Toggle */}
-      <button
-        onClick={toggleTheme}
-        className="fixed top-4 right-4 z-50 p-3 rounded-full bg-primary-green hover:bg-green-hover transition-all duration-300 transform hover:scale-110 shadow-lg"
-        aria-label="Toggle theme"
-      >
+     <button
+  onClick={toggleTheme}
+  className="fixed top-4 right-4 z-[9999] p-3 rounded-full bg-primary-green hover:bg-green-hover transition-all duration-300 transform hover:scale-110 shadow-lg"
+  aria-label="Toggle theme"
+>
         {isDarkMode ? (
           <Sun className="w-5 h-5 text-white" />
         ) : (
