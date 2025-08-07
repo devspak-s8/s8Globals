@@ -112,9 +112,9 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isDarkMode }) => {
               Why Choose Us
             </div>
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
-              isDarkMode ? 'text-white' : 'text-gray-900'
+              isDarkMode ? 'text-white' : 'text-text-dark'
             }`}>
-              Why <span className="bg-gradient-to-r from-primary-orange to-accent-red bg-clip-text text-transparent">S8Globals</span>?
+              Why <span className="gradient-text">S8Globals</span>?
             </h2>
             <p className={`text-xl max-w-3xl mx-auto ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'

@@ -151,7 +151,7 @@ const FAQ: React.FC<FAQProps> = ({ isDarkMode }) => {
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              Got <span className="bg-gradient-to-r from-primary-purple to-accent-red bg-clip-text text-transparent">Questions</span>?
+              Got <span className="gradient-text">Questions</span>?
             </h2>
             <p className={`text-xl max-w-3xl mx-auto ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'

@@ -93,7 +93,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ isDarkMode }) => {
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
               isDarkMode ? 'text-bg-light' : 'text-text-dark'
             }`}>
-              What Our Clients <span className="bg-gradient-to-r from-accent-red to-primary-orange bg-clip-text text-transparent">Say</span>
+              What Our Clients <span className="bg-gradient-to-r from-accent-red to-primary-orange bg-clip-text gradient-text">Say</span>
             </h2>
             <p className={`text-xl max-w-2xl mx-auto ${
               isDarkMode ? 'text-gray-400' : 'text-gray-text'
